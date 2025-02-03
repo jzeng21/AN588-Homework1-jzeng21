@@ -1,0 +1,147 @@
+---
+title: "msbrenda__OriginalHomeworkCode_01"
+author: "Minseo Brenda Kim"
+date: "2025-01-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(stringr)
+```
+
+### CHALLENGE 1
+
+First, create a vector of 1, word character strings comprising the first line of the novel Ulysses, by James Joyce: “Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed.”
+
+```{r}
+# Save the first line of the novel Ulysses to 'string'
+string <- "Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+
+# Split the line into words
+words <- str_split(string, " ")[[1]] #JZ Nice I used regex expression instead of double quotations but your method works too!
+
+print(words)
+```
+
+Then, extract every third element of this vector.
+
+```{r}
+every_third <- words[seq(3, length(words), by = 3)] #JZ I would try to keep a challenge code in one code block so that it is easier to follow. 
+print(every_third)
+```
+
+### CHALLENGE 2 
+
+```{r}
+m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
+m
+```
+
+Given the matrix, *m*, above, extract the 2nd, 3rd, and 6th columns and assign them to the variable *x*
+
+```{r}
+x <- m[, c(2, 3, 6)]
+x
+```
+
+Given the matrix, *m*, above, extract the 6th to 8th row and assign them to the variable *x*
+
+```{r}
+x <- m[6:8, ]
+x
+```
+
+Given the matrix, *m*, above, extract the elements from row 2, column 2 to row 6, column 9 and assign them to the variable *x*
+
+```{r}
+x <- m[2:6, 2:9]
+x
+```
+
+### CHALLENGE 3
+
+Construct a 4-dimensional, 400 element array (5 x 5 x 4 x 4) named a consisting of the numbers 400 to 1 (i.e., a descending series)
+
+```{r}
+a <- array(data = 400:1, dim = c(5, 5, 4, 4)) 
+a
+```
+
+Given this matrix, what would the following return?
+
+```{r}
+a1 <- a[1, 1, 1, 2]
+a1
+```
+
+```{r}
+a2 <- a[2, 3, 2, ]
+a2
+```
+        
+```{r}
+a3 <- a[1:5, 1:5, 3, 3]
+a3
+```
+
+### CHALLENGE 4
+
+Create a list representing the primate taxonomy
+
+```{r}
+# Haplorhini
+Platyrrhini <- c("Cebidae", "Atelidae", "Pitheciidae")
+Catarrhini <- c("Cercopithecidae", "Hylobatidae", "Hominidae")
+Anthropoidea <- list(Platyrrhini = Platyrrhini, Catarrhini = Catarrhini)
+
+Tarsioidea <- c("Tarsiidae")
+Haplorhini <- list(Anthropoidea = Anthropoidea, Tarsioidea = Tarsioidea) #JZ I think you might be missing catarrhini here
+
+# Strepsirhini
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+Lorisoidea <- c("Lorisidae", "Galagidae")
+Strepsirhini <- list(Lemuroidea = Lemuroidea, Lorisoidea = Lorisoidea)
+
+# Primates
+Primates <- list(Haplorhini = Haplorhini, Strepsirhini = Strepsirhini)
+
+Primates
+```
+
+### CHALLENGE 5
+
+Store the following numbers as a 5x3 matrix, called "m3": 3, 0, 1, 23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2. Be sure to fill the matrix ROW-WISE.
+
+```{r}
+m3 <- matrix(data = c(3, 0, 1, 23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), 
+             nrow = 5, ncol = 3, byrow = TRUE)
+m3
+```
+
+Then, coerce the matrix to a data frame.
+
+```{r}
+df <- as.data.frame(m3)
+```
+
+As a data frame, coerce the second column to be logical-valued
+
+```{r}
+df[, 2] <- as.logical(df[, 2])
+```
+
+As a data frame, coerce the third column to be factor-valued
+
+```{r}
+df[, 3] <- as.factor(df[, 3])
+```
+
+When you are done, use the str() command to show the data type for each variable in your dataframe.
+
+```{r}
+str(df)
+```
