@@ -190,21 +190,13 @@ Lorisoidea <- c("Lorisidae", "Galagidae")
 Strepsirhini <- list(Lemuroidea = Lemuroidea, Lorisoidea = Lorisoidea)
 
 Platyrrhini <- c("Cebidae","Atelidae","Pitheciidae")
-names(Platyrrhini)
 Catarrhini <- c("Cercopithecidae","Hylobatidae", "Hominidae")
-names(Catarrhini)
 Anthropoidea <- list(Platyrrhini = Platyrrhini, Catarrhini = Catarrhini)
-names(Anthropoidea)
-Anthropoidea
 
 Tarsioidea <- c("Tarsiidae")
 Haplorhini <- list(Tarsioidea = Tarsioidea, Anthropoidea = Anthropoidea, Catarrhini = Catarrhini)
-names(Haplorhini)
-Haplorhini
 
 Primates <- list(Haplorhini = Haplorhini, Strepsirhini = Strepsirhini)
-names(Primates)
-Primates
 
 ```
 
