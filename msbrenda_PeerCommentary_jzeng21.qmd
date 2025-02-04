@@ -1,0 +1,248 @@
+---
+title: "jzeng21_OriginalHomeworkCode_01"
+format: html
+editor: visual
+---
+
+## **CHALLENGE 1**
+
+------------------------------------------------------------------------
+
+-   First, create a vector of 1, word character strings comprising the first line of the novel *Ulysses*, by James Joyce: “Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed.”
+
+-   Then, extract every third element of this vector.
+
+    -   **HINT 1:** Take a look at the {stringr} package and the function `str_split()` to see if you can easily divide a single string into a vector of substrings.
+
+    -   **HINT 2:** If you’re ambitious, the following function, `gsub("[[:punct:]]","",*string*)`, applied to `*string*`, will remove punctuation and special characters from that string.
+
+        ```{r}
+
+        library(stringr)
+
+        # Split the sentence into words using str_split()
+        v1_sentence <- "Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+        v2_words <- str_split(v1_sentence, "\\s+")[[1]]
+
+        # Step 2: Extract every third element from the vector
+        v3_third <- v2_words[seq(3, length(v2_words), by = 3)]
+
+        # Print the result
+        print(v3_third)
+        ```
+
+*Peer Commentary:* Great use of str_split( )! One potential issue that I also have is punctuations are still attached to words like "Stately," which could make it clear removing them.
+
+------------------------------------------------------------------------
+
+#### **CHALLENGE 2**
+
+------------------------------------------------------------------------
+
+-   Given the matrix, **m**, above, extract the 2nd, 3rd, and 6th columns and assign them to the variable **x**
+
+    ```{r}
+
+    #initalize the matrix 
+    m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
+
+    # extract 2nd, 3rd, and 6th col
+    x <- m[,c(2,3,6)]
+
+    #print the result
+    print(x)
+
+    ```
+
+-   Given the matrix, **m**, above, extract the 6th to 8th row and assign them to the variable **x**
+
+    ```{r}
+
+    # extract 6th and 8th row
+    x <- m[c(6,8),]
+
+    #print result
+    print(x)
+    ```
+
+-   Given the matrix, **m**, above, extract the elements from row 2, column 2 to row 6, column 9 and assign them to the variable **x**
+
+    ```{r}
+
+    #extract elements from row 2, col 2 to row 6, col 9.
+    x <- m[2:6, 2:9]
+    ```
+
+    *Peer Commentary:* Correctly extracts the specified columns, the code is concise.
+
+------------------------------------------------------------------------
+
+#### **CHALLENGE 3**
+
+------------------------------------------------------------------------
+
+-   Construct a 4-dimensional, 400 element array (5 x 5 x 4 x 4) named **a** consisting of the numbers 400 to 1 (i.e., a descending series)
+
+    ```{r}
+
+    #initalize array
+    v <- 400:1 
+
+    #set array size by using dim
+    a <- array(v, dim = c(5,5,4,4))
+
+    #print results
+    print(a)
+    ```
+
+-   Given this matrix, what would the following return?
+
+    -   a\[1, 1, 1, 2\]
+
+    -   a\[2, 3, 2, \]
+
+    -   a\[1:5, 1:5, 3, 3\]
+
+        ```{r}
+
+        a[1, 1, 1, 2] 
+
+        a[2, 3, 2, ]
+
+        a[1:5, 1:5, 3, 3]
+        ```
+
+        *Peer Commentary:* The array is correctly initialized with descending values.
+
+------------------------------------------------------------------------
+
+#### **CHALLENGE 4**
+
+------------------------------------------------------------------------
+
+Create a **list** representing this (simplified) primate taxonomy:
+
+-   Primates
+
+    -   Haplorhini
+
+        -   Anthropoidea
+
+            -   Platyrrhini
+
+                -   Cebidae
+
+                -   Atelidae
+
+                -   Pitheciidae
+
+            -   Catarrhini
+
+                -   Cercopithecidae
+
+                -   Hylobatidae
+
+                -   Hominidae
+
+        -   Tarsioidea
+
+            -   Tarsiidae
+
+    -   Strepsirhini
+
+        -   Lorisoidea
+
+            -   Lorisidae
+
+            -   Galagidae
+
+        -   Lemuroidea
+
+            -   Cheirogaleidae
+
+            -   Lepilemuridae
+
+            -   Indriidae
+
+            -   Lemuridae
+
+            -   Daubentoniidae
+
+**HINT:** you can use **lists** as elements in a list, which would nest the names like in a phylogeny.
+
+I’ll get you started with the Strepsirhini:
+
+``` r
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae",
+    "Daubentoniidae")
+Lorisoidea <- c("Lorisidae", "Galagidae")
+Strepsirhini <- list(Lemuroidea, Lorisoidea)
+names(Strepsirhini) <- list("Lemuroidea", "Lorisoidea")
+Strepsirhini
+```
+
+``` r
+## $Lemuroidea
+## [1] "Cheirogaleidae" "Lepilemuridae"  "Indriidae"      "Lemuridae"     
+## [5] "Daubentoniidae"
+## 
+## $Lorisoidea
+## [1] "Lorisidae" "Galagidae"
+```
+
+```{r}
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+Lorisoidea <- c("Lorisidae", "Galagidae")
+Strepsirhini <- list(Lemuroidea = Lemuroidea, Lorisoidea = Lorisoidea)
+
+Platyrrhini <- c("Cebidae","Atelidae","Pitheciidae")
+Catarrhini <- c("Cercopithecidae","Hylobatidae", "Hominidae")
+Anthropoidea <- list(Platyrrhini = Platyrrhini, Catarrhini = Catarrhini)
+
+Tarsioidea <- c("Tarsiidae")
+Haplorhini <- list(Tarsioidea = Tarsioidea, Anthropoidea = Anthropoidea, Catarrhini = Catarrhini)
+
+Primates <- list(Haplorhini = Haplorhini, Strepsirhini = Strepsirhini)
+```
+
+*Peer Commentary:* Well-structured and follows a clear hierarchy. I read your comment on my hw and thought this could be controversial, but one minor issue I think is that \`Catarrhini\` is defined twice in your code (once in \`Anthropoidea\`, once in \`Haplorhini\`. Since you defined \`Catarrhini\` in \`Anthropoidea\`, you can just define \`Tarsioidea\` and \`Anthropoidea\` in \`Haplorhini\`, to avoid redundant duplication.
+
+------------------------------------------------------------------------
+
+#### **CHALLENGE 5**
+
+------------------------------------------------------------------------
+
+-   Store the following numbers as a 5 x 3 matrix, called “m3”: 3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2. Be sure to fill the matrix ROW-WISE.
+
+-   Then, do the following:
+
+    -   Coerce the matrix to a data frame.
+
+    -   As a data frame, coerce the second column to be *logical-valued*
+
+    -   As a data frame, coerce the third column to be *factor-valued*
+
+When you are done, use the `str()` command to show the data type for each variable in your dataframe.
+
+```{r}
+m3 <- matrix(c(3, 0, 1, 
+               23, 1, 2, 
+               33, 1, 1, 
+               42, 0, 1, 
+               41, 0, 2), 
+             nrow = 5, ncol = 3, byrow = TRUE)
+
+print(m3)
+
+df <- as.data.frame(m3)
+
+df[[2]] <- as.logical(df[[2]])
+
+
+df[[3]] <- as.factor(df[[3]])
+
+str(df)
+```
+
+*Peer Commentary:* Great use of \`as.logical()\` and \`as.factor()\` for data conversion!
